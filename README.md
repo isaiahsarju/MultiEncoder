@@ -1,21 +1,24 @@
 # MultiEncoder
-**MultiEncoder** is a multiple encoder. It encodes multiple in multiple formats so you can quickly deduce what encoding you're working wit.
+**MultiEncoder** is a multiple encoder. It encodes  in multiple formats so you can quickly deduce what encoding you're working wit.
 
 ## Install
+
+### Docker if you want
 Build the container:
 
 `docker build -t multiencoder .`
 
 Then run it: 
 
-`docker run -it multiencoder /bin/bash`
+`docker run --name multiencoder -it multiencoder /bin/bash`
 
 For testing I find it easier to mount directory so I can use host's text editor instead of the container's text editor.
 
-`docker run -v [host path to MultiEncoder]:/root/MultiEncoder/ -it multiencoder /bin/bash`
+`docker run --name multiencoder -v [host path to MultiEncoder]:/root/MultiEncoder/ -it multiencoder /bin/bash`
 
 
-Within container run:
+### Final Setup
+Then run:
 ```
 pip3 install virtualenv
 python3 -m venv env

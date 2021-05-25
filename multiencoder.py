@@ -5,6 +5,7 @@ import base58
 import base64
 import bech32
 import binascii
+import urllib.parse
 
 ENCODING = "ascii"
 
@@ -74,6 +75,12 @@ def hexData(string_data):
 	hex_string = hex_bytes.decode(ENCODING)
 	return hex_string
 
+def urlData(string_data):
+	#string_bytes = string_data.encode(ENCODING)
+	url_string = urllib.parse.quote(string_data)
+	#url_string = url_bytes.decode(ENCODING)
+	return url_string
+
 def main():
 	parser = OptionParser()
 	parser.add_option("-s", "--string", dest="string_data", default="", help="String to encode")
@@ -90,6 +97,7 @@ def main():
 	parser.add_option("--bech32", dest="bech32", action='store_true', help="Encode Bech32")
 	parser.add_option("--decimal", dest="decimal", action='store_true', help="Encode as Decimal")
 	parser.add_option("--hex", dest="hex", action='store_true', help="Encode Hex")
+	parser.add_option("--url", dest="url", action='store_true', help="URL Encode")
 
 
 	(options, args) = parser.parse_args()
@@ -153,6 +161,12 @@ def main():
 	if options.hex or all_encodings:
 		encoded = hexData(string_data)
 		print("Hex:")
+		print(f"{encoded}")
+		print("")
+
+	if options.url or all_encodings:
+		encoded = urlData(string_data)
+		print("URL:")
 		print(f"{encoded}")
 		print("")
 
